@@ -1,0 +1,14 @@
+---
+Join:
+  show-popup: true
+  hide-default: false
+Quit:
+  show-popup: true
+  hide-default: true
+WorldChange:
+  show-popup: true
+  hide-default: true
+Death:
+  show-popup: true
+  hide-default: false
+...

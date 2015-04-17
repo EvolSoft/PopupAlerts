@@ -1,14 +1,18 @@
 ---
 Join:
+  duration: 3
   show-popup: true
-  hide-default: false
+  hide-default: true
 Quit:
+  duration: 3
   show-popup: true
   hide-default: true
 WorldChange:
+  duration: 3
   show-popup: true
   hide-default: true
 Death:
+  duration: 3
   show-popup: true
-  hide-default: false
+  hide-default: true
 ...

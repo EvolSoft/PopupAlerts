@@ -32,27 +32,35 @@ Please read the documentation to see how to configure PopupAlerts
 #Message text must be configured from default CustomAlerts config.yml file
 #Join messages
 Join:
+  #The duration of popup
+  duration: 3
   #Show join messages in popups
   show-popup: true
   #Hide default join messages (they won't be displayed in chat but only on popups)
-  hide-default: false
+  hide-default: true
 #Quit messages
 Quit:
+  #The duration of popup
+  duration: 3
   #Show quit messages in popups
   show-popup: true
   #Hide default quit messages (they won't be displayed in chat but only on popups)
   hide-default: true
 #World Change messages (they are displayed only if they are enabled in CustomAlerts configuration)
 WorldChange:
+  #The duration of popup
+  duration: 3
   #Show world change messages in popups
   show-popup: true
   #Hide default world change messages (they won't be displayed in chat but only on popups)
   hide-default: true
 #Death messages
 Death:
+  #The duration of popup
+  duration: 3
   #Show death messages in popups (Remember that they can't be displayed from the victim)
   show-popup: true
   #Hide default death messages (they won't be displayed in chat but only on popups)
-  hide-default: false
+  hide-default: true
 ...
 ```

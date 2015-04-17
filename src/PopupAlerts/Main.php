@@ -1,10 +1,10 @@
 <?php
 
 /*
- * PopupAlerts (v1.0) by EvolSoft
+ * PopupAlerts (v1.1) by EvolSoft
  * Developer: EvolSoft (Flavius12)
  * Website: http://www.evolsoft.tk
- * Date: 15/04/2015 12:36 AM (UTC)
+ * Date: 17/04/2015 09:54 AM (UTC)
  * Copyright & License: (C) 2015 EvolSoft
  * Licensed under MIT (https://github.com/EvolSoft/PopupAlerts/blob/master/LICENSE)
  */
@@ -32,7 +32,7 @@ class Main extends PluginBase {
 	const PRODUCER = "EvolSoft";
 	
 	/** @var string VERSION Plugin version */
-	const VERSION = "1.0";
+	const VERSION = "1.1";
 	
 	/** @var string MAIN_WEBSITE Plugin producer website */
 	const MAIN_WEBSITE = "http://www.evolsoft.tk";
@@ -103,9 +103,7 @@ class Main extends PluginBase {
     	$player = $event->getPlayer();
     	if($cfg["Join"]["show-popup"] == true){
     		$msg = CustomAlertsAPI::getAPI()->getJoinMessage();
-    	    foreach($this->getServer()->getOnlinePlayers() as $players){
-    			$players->sendPopup($this->translateColors("&", $msg));
-    		}
+    		$this->getServer()->getScheduler()->scheduleRepeatingTask(new MessageTask($this, $msg, $cfg["Join"]["duration"]), 10);
     		if($cfg["Join"]["hide-default"] == true){
     			CustomAlertsAPI::getAPI()->setJoinMessage("");
     		}
@@ -117,9 +115,7 @@ class Main extends PluginBase {
     	$player = $event->getPlayer();
     	if($cfg["Quit"]["show-popup"] == true){
     		$msg = CustomAlertsAPI::getAPI()->getQuitMessage();
-    		foreach($this->getServer()->getOnlinePlayers() as $players){
-    			$players->sendPopup($this->translateColors("&", $msg));
-    		}
+    		$this->getServer()->getScheduler()->scheduleRepeatingTask(new MessageTask($this, $msg, $cfg["Quit"]["duration"]), 10);
     		if($cfg["Quit"]["hide-default"] == true){
     			CustomAlertsAPI::getAPI()->setQuitMessage("");
     		}
@@ -132,7 +128,7 @@ class Main extends PluginBase {
     		$player = $event->getPlayer();
     		if($cfg["WorldChange"]["show-popup"] == true){
     			$msg = CustomAlertsAPI::getAPI()->getWorldChangeMessage();
-    			$player->sendPopup($this->translateColors("&", $msg));
+    			$this->getServer()->getScheduler()->scheduleRepeatingTask(new MessageTask($this, $msg, $cfg["WorldChange"]["duration"]), 10);
     			if($cfg["WorldChange"]["hide-default"] == true){
     				CustomAlertsAPI::getAPI()->setWorldChangeMessage("");
     			}
@@ -145,9 +141,7 @@ class Main extends PluginBase {
     	$player = $event->getPlayer();
     	if($cfg["Death"]["show-popup"] == true){
     		$msg = CustomAlertsAPI::getAPI()->getDeathMessage();
-    	    foreach($this->getServer()->getOnlinePlayers() as $players){
-    			$players->sendPopup($this->translateColors("&", $msg));
-    		}
+    		$this->getServer()->getScheduler()->scheduleRepeatingTask(new MessageTask($this, $msg, $cfg["Death"]["duration"]), 10);
     		if($cfg["Death"]["hide-default"] == true){
     			CustomAlertsAPI::getAPI()->setDeathMessage("");
     		}

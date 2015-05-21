@@ -1,10 +1,10 @@
 <?php
 
 /*
- * PopupAlerts (v1.1) by EvolSoft
+ * PopupAlerts (v1.2) by EvolSoft
  * Developer: EvolSoft (Flavius12)
  * Website: http://www.evolsoft.tk
- * Date: 17/04/2015 09:54 AM (UTC)
+ * Date: 21/05/2015 01:15 PM (UTC)
  * Copyright & License: (C) 2015 EvolSoft
  * Licensed under MIT (https://github.com/EvolSoft/PopupAlerts/blob/master/LICENSE)
  */
@@ -18,7 +18,7 @@ use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 
 //CustomAlerts API
-use CustomAlerts\CustomAlertsAPI;
+use CustomAlerts\CustomAlerts;
 use CustomAlerts\Events\CustomAlertsDeathEvent;
 use CustomAlerts\Events\CustomAlertsJoinEvent;
 use CustomAlerts\Events\CustomAlertsQuitEvent;
@@ -32,7 +32,7 @@ class Main extends PluginBase {
 	const PRODUCER = "EvolSoft";
 	
 	/** @var string VERSION Plugin version */
-	const VERSION = "1.1";
+	const VERSION = "1.2";
 	
 	/** @var string MAIN_WEBSITE Plugin producer website */
 	const MAIN_WEBSITE = "http://www.evolsoft.tk";
@@ -82,71 +82,68 @@ class Main extends PluginBase {
     public function onEnable(){
     	$this->logger = Server::getInstance()->getLogger();
     	if($this->getServer()->getPluginManager()->getPlugin("CustomAlerts")){
-    		if(CustomAlertsAPI::getAPI()->getAPIVersion() == "1.0"){
+    		if(CustomAlerts::getAPI()->getAPIVersion() == "1.1"){
     			@mkdir($this->getDataFolder());
     			$this->saveDefaultConfig();
     			$this->logger->info($this->translateColors("&", Main::PREFIX . "&ePopupAlerts &9v" . Main::VERSION . " &adeveloped by&9 " . Main::PRODUCER));
     			$this->logger->info($this->translateColors("&", Main::PREFIX . "&eWebsite &9" . Main::MAIN_WEBSITE));
-    			//Register this plugin as CustomAlerts extension (with lowest priority)
-    			CustomAlertsAPI::getAPI()->registerExtension($this, CustomAlertsAPI::PRIORITY_LOWEST);
     		}else{
-    			$this->logger->error($this->translateColors("&", Main::PREFIX . "&cPlease use CustomAlerts (API 1.0). Plugin disabled"));
+    			$this->logger->error($this->translateColors("&", Main::PREFIX . "&cPlease update CustomAlerts to API 1.1. Plugin disabled"));
     			$this->getServer()->getPluginManager()->disablePlugin($this);
     		}
     	}else{
-    		$this->logger->error($this->translateColors("&", Main::PREFIX . "&cYou need to install CustomAlerts (API 1.0). Plugin disabled"));
+    		$this->logger->error($this->translateColors("&", Main::PREFIX . "&cYou need to install CustomAlerts (API 1.1). Plugin disabled"));
     	}
     }
     
-    public function onCustomAlertsJoinEvent(CustomAlertsJoinEvent $event){
+    public function onCAJoin(CustomAlertsJoinEvent $event){
     	$cfg = $this->getConfig()->getAll();
     	$player = $event->getPlayer();
     	if($cfg["Join"]["show-popup"] == true){
-    		$msg = CustomAlertsAPI::getAPI()->getJoinMessage();
+    		$msg = CustomAlerts::getAPI()->getJoinMessage();
     		$this->getServer()->getScheduler()->scheduleRepeatingTask(new MessageTask($this, $msg, $cfg["Join"]["duration"]), 10);
     		if($cfg["Join"]["hide-default"] == true){
-    			CustomAlertsAPI::getAPI()->setJoinMessage("");
+    			CustomAlerts::getAPI()->setJoinMessage("");
     		}
     	}
     }
     
-    public function onCustomAlertsQuitEvent(CustomAlertsQuitEvent $event){
+    public function onCAQuit(CustomAlertsQuitEvent $event){
     	$cfg = $this->getConfig()->getAll();
     	$player = $event->getPlayer();
     	if($cfg["Quit"]["show-popup"] == true){
-    		$msg = CustomAlertsAPI::getAPI()->getQuitMessage();
+    		$msg = CustomAlerts::getAPI()->getQuitMessage();
     		$this->getServer()->getScheduler()->scheduleRepeatingTask(new MessageTask($this, $msg, $cfg["Quit"]["duration"]), 10);
     		if($cfg["Quit"]["hide-default"] == true){
-    			CustomAlertsAPI::getAPI()->setQuitMessage("");
+    			CustomAlerts::getAPI()->setQuitMessage("");
     		}
     	}
     }
     
-    public function onCustomAlertsWorldChangeEvent(CustomAlertsWorldChangeEvent $event){
-    	if(CustomAlertsAPI::getAPI()->isDefaultWorldChangeMessageEnabled()){
+    public function onCAWorldChange(CustomAlertsWorldChangeEvent $event){
+    	if(CustomAlerts::getAPI()->isDefaultWorldChangeMessageEnabled()){
     		$cfg = $this->getConfig()->getAll();
     		$player = $event->getPlayer();
     		if($cfg["WorldChange"]["show-popup"] == true){
-    			$msg = CustomAlertsAPI::getAPI()->getWorldChangeMessage();
+    			$msg = CustomAlerts::getAPI()->getWorldChangeMessage();
     			$this->getServer()->getScheduler()->scheduleRepeatingTask(new MessageTask($this, $msg, $cfg["WorldChange"]["duration"]), 10);
     			if($cfg["WorldChange"]["hide-default"] == true){
-    				CustomAlertsAPI::getAPI()->setWorldChangeMessage("");
+    				CustomAlerts::getAPI()->setWorldChangeMessage("");
     			}
     		}
     	}
     }
     
-    public function onCustomAlertsDeathEvent(CustomAlertsDeathEvent $event){
+    public function onCADeath(CustomAlertsDeathEvent $event){
     	$cfg = $this->getConfig()->getAll();
     	$player = $event->getPlayer();
     	if($cfg["Death"]["show-popup"] == true){
-    		$msg = CustomAlertsAPI::getAPI()->getDeathMessage();
+    		$msg = CustomAlerts::getAPI()->getDeathMessage();
     		$this->getServer()->getScheduler()->scheduleRepeatingTask(new MessageTask($this, $msg, $cfg["Death"]["duration"]), 10);
     		if($cfg["Death"]["hide-default"] == true){
-    			CustomAlertsAPI::getAPI()->setDeathMessage("");
+    			CustomAlerts::getAPI()->setDeathMessage("");
     		}
     	}
     }
-    
 }
 ?>

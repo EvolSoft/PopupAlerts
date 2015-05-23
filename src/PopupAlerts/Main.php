@@ -11,6 +11,7 @@
 
 namespace PopupAlerts;
 
+use pocketmine\event\Listener;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
@@ -24,7 +25,7 @@ use CustomAlerts\Events\CustomAlertsJoinEvent;
 use CustomAlerts\Events\CustomAlertsQuitEvent;
 use CustomAlerts\Events\CustomAlertsWorldChangeEvent;
 
-class Main extends PluginBase {
+class Main extends PluginBase implements Listener {
     
 	//About Plugin Const
 	
@@ -85,6 +86,7 @@ class Main extends PluginBase {
     		if(CustomAlerts::getAPI()->getAPIVersion() == "1.1"){
     			@mkdir($this->getDataFolder());
     			$this->saveDefaultConfig();
+				$this->getServer()->getPluginManager()->registerEvents($this, $this);
     			$this->logger->info($this->translateColors("&", Main::PREFIX . "&ePopupAlerts &9v" . Main::VERSION . " &adeveloped by&9 " . Main::PRODUCER));
     			$this->logger->info($this->translateColors("&", Main::PREFIX . "&eWebsite &9" . Main::MAIN_WEBSITE));
     		}else{

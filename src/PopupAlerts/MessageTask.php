@@ -1,7 +1,7 @@
 <?php
 
 /*
- * PopupAlerts (v1.2) by EvolSoft
+ * PopupAlerts (v1.3) by EvolSoft
  * Developer: EvolSoft (Flavius12)
  * Website: http://www.evolsoft.tk
  * Date: 21/05/2015 01:16 PM (UTC)

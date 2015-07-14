@@ -10,7 +10,7 @@ PocketMine-MP plugins
 ## Requirements
 
 PocketMine-MP Alpha_1.5 API 1.12.0<br>
-**Dependency Plugins:** CustomAlerts v1.3 API 1.1
+**Dependency Plugins:** CustomAlerts v1.6 API 1.2
 
 ## Overview
 
@@ -20,7 +20,7 @@ PocketMine-MP Alpha_1.5 API 1.12.0<br>
 
 
 ***This Plugin uses PocketMine 1.5 API. You can't install it on old versions of PocketMine and this plugin works only with MCPE v0.11.0 and later.***<br>
-***This Plugin is a CustomAlerts extension and uses CustomAlerts API 1.1. THIS MEANS THAT YOU NEED TO INSTALL CustomAlerts v1.3 PLUGIN TO USE PopupAlerts***
+***This Plugin is a CustomAlerts extension and uses CustomAlerts API 1.2. THIS MEANS THAT YOU NEED TO INSTALL CustomAlerts v1.6 PLUGIN TO USE PopupAlerts***
 
 Messages can be configured simply from default CustomAlerts config.yml<br>
 Please read the documentation to see how to configure PopupAlerts

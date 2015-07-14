@@ -1,10 +1,10 @@
 <?php
 
 /*
- * PopupAlerts (v1.2) by EvolSoft
+ * PopupAlerts (v1.3) by EvolSoft
  * Developer: EvolSoft (Flavius12)
  * Website: http://www.evolsoft.tk
- * Date: 21/05/2015 01:15 PM (UTC)
+ * Date: 14/07/2015 02:44 PM (UTC)
  * Copyright & License: (C) 2015 EvolSoft
  * Licensed under MIT (https://github.com/EvolSoft/PopupAlerts/blob/master/LICENSE)
  */
@@ -33,7 +33,7 @@ class Main extends PluginBase implements Listener {
 	const PRODUCER = "EvolSoft";
 	
 	/** @var string VERSION Plugin version */
-	const VERSION = "1.2";
+	const VERSION = "1.3";
 	
 	/** @var string MAIN_WEBSITE Plugin producer website */
 	const MAIN_WEBSITE = "http://www.evolsoft.tk";
@@ -83,18 +83,18 @@ class Main extends PluginBase implements Listener {
     public function onEnable(){
     	$this->logger = Server::getInstance()->getLogger();
     	if($this->getServer()->getPluginManager()->getPlugin("CustomAlerts")){
-    		if(CustomAlerts::getAPI()->getAPIVersion() == "1.1"){
+    		if(CustomAlerts::getAPI()->getAPIVersion() == "1.2"){
     			@mkdir($this->getDataFolder());
     			$this->saveDefaultConfig();
 				$this->getServer()->getPluginManager()->registerEvents($this, $this);
     			$this->logger->info($this->translateColors("&", Main::PREFIX . "&ePopupAlerts &9v" . Main::VERSION . " &adeveloped by&9 " . Main::PRODUCER));
     			$this->logger->info($this->translateColors("&", Main::PREFIX . "&eWebsite &9" . Main::MAIN_WEBSITE));
     		}else{
-    			$this->logger->error($this->translateColors("&", Main::PREFIX . "&cPlease update CustomAlerts to API 1.1. Plugin disabled"));
+    			$this->logger->error($this->translateColors("&", Main::PREFIX . "&cPlease update CustomAlerts to API 1.2. Plugin disabled"));
     			$this->getServer()->getPluginManager()->disablePlugin($this);
     		}
     	}else{
-    		$this->logger->error($this->translateColors("&", Main::PREFIX . "&cYou need to install CustomAlerts (API 1.1). Plugin disabled"));
+    		$this->logger->error($this->translateColors("&", Main::PREFIX . "&cYou need to install CustomAlerts (API 1.2). Plugin disabled"));
     	}
     }
     

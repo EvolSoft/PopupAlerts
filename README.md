@@ -10,7 +10,7 @@ PocketMine-MP plugins
 
 ## Requirements
 
-PocketMine-MP 1.7dev API 3.0.0-ALPHA7, 3.0.0-ALPHA8, 3.0.0-ALPHA9, 3.0.0-ALPHA10<br>
+PocketMine-MP 1.7dev API 3.0.0-ALPHA7 -> 3.0.0-ALPHA12<br>
 **Dependency Plugins:** CustomAlerts v1.8 API 2.0
 
 ## Overview

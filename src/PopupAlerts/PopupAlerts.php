@@ -1,10 +1,10 @@
 <?php
 
 /*
- * PopupAlerts (v1.4) by EvolSoft
+ * PopupAlerts (v1.5) by EvolSoft
  * Developer: EvolSoft (Flavius12)
  * Website: https://www.evolsoft.tk
- * Date: 13/01/2018 02:03 PM (UTC)
+ * Date: 27/04/2018 06:56 PM (UTC)
  * Copyright & License: (C) 2015-2018 EvolSoft
  * Licensed under MIT (https://github.com/EvolSoft/PopupAlerts/blob/master/LICENSE)
  */
@@ -73,8 +73,6 @@ class PopupAlerts extends PluginBase implements Listener {
     			$this->saveDefaultConfig();
     			$this->cfg = $this->getConfig()->getAll();
 				$this->getServer()->getPluginManager()->registerEvents($this, $this);
-    			$this->logger->info($this->translateColors("&", self::PREFIX . "&ePopupAlerts &9v" . $this->getDescription()->getVersion() . "&e developed by &9EvolSoft"));
-    			$this->logger->info($this->translateColors("&", self::PREFIX . "&eWebsite &9" . $this->getDescription()->getWebsite()));
     		}else{
     			$this->logger->error($this->translateColors("&", self::PREFIX . "&cPlease update CustomAlerts to API 2.0. Plugin disabled"));
     			$this->getServer()->getPluginManager()->disablePlugin($this);
